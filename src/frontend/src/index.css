@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay[wght].woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree[wght].woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: 97 0.008 85;
+    --foreground: 18 0 0;
+    --card: 100 0 0;
+    --card-foreground: 18 0 0;
+    --popover: 100 0 0;
+    --popover-foreground: 18 0 0;
+    --primary: 74 0.14 85;
+    --primary-foreground: 10 0 0;
+    --secondary: 93 0.01 85;
+    --secondary-foreground: 18 0 0;
+    --muted: 93 0.01 85;
+    --muted-foreground: 45 0 0;
+    --accent: 74 0.14 85;
+    --accent-foreground: 10 0 0;
+    --destructive: 55 0.22 27;
+    --destructive-foreground: 18 0 0;
+    --border: 85 0.02 85;
+    --input: 85 0.02 85;
+    --ring: 74 0.14 85;
+    --radius: 2px;
+    --chart-1: 74 0.14 85;
+    --chart-2: 60 0.12 85;
+    --chart-3: 80 0.08 85;
+    --chart-4: 50 0.18 85;
+    --chart-5: 40 0.2 85;
+    --sidebar: 97 0.008 85;
+    --sidebar-foreground: 18 0 0;
+    --sidebar-primary: 74 0.14 85;
+    --sidebar-primary-foreground: 10 0 0;
+    --sidebar-accent: 93 0.01 85;
+    --sidebar-accent-foreground: 18 0 0;
+    --sidebar-border: 85 0.02 85;
+    --sidebar-ring: 74 0.14 85;
+
+    /* Custom luxury tokens */
+    --gold: oklch(62% 0.14 85);
+    --gold-dim: oklch(52% 0.1 85);
+    --gold-bright: oklch(70% 0.16 85);
+    --cream: oklch(97% 0.008 85);
+    --cream-alt: oklch(93% 0.012 85);
+    --dark: oklch(15% 0 0);
+    --mid: oklch(40% 0 0);
+    --smoke: oklch(55% 0 0);
+    /* Keep for hero dark overlay compatibility */
+    --obsidian: oklch(10% 0 0);
+    --ivory: oklch(97% 0.005 85);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: "Figtree", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Scroll margin for sticky nav */
+.section-scroll {
+  scroll-margin-top: 80px;
+}
+
+/* Fade-in animation */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
+/* Gold gradient text */
+.gold-text {
+  color: var(--gold);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(70% 0.16 85),
+    oklch(52% 0.1 85),
+    oklch(70% 0.16 85)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold divider */
+.gold-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Luxury button */
+.btn-gold {
+  background: linear-gradient(135deg, oklch(62% 0.14 85), oklch(55% 0.12 85));
+  color: oklch(98% 0 0);
+  font-family: "Figtree", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 14px 36px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, oklch(70% 0.16 85), oklch(62% 0.14 85));
+  transition: left 0.3s ease;
+}
+
+.btn-gold:hover::before {
+  left: 0;
+}
+
+.btn-gold span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px oklch(62% 0.14 85 / 0.35);
+}
+
+/* Service card */
+.service-card {
+  background: oklch(100% 0 0);
+  border: 1px solid oklch(62% 0.14 85 / 0.25);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: oklch(62% 0.14 85 / 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px oklch(62% 0.14 85 / 0.12);
+}
+
+/* Gallery item */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, oklch(10% 0 0 / 0.85), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Nav scrolled state */
+.nav-scrolled {
+  background: oklch(97% 0.008 85 / 0.97) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid oklch(62% 0.14 85 / 0.2);
+  box-shadow: 0 2px 12px oklch(0% 0 0 / 0.06);
+}
+
+/* Nav transparent (on hero) */
+.nav-transparent {
+  background: transparent;
+}
+
+/* Input luxury style */
+.input-luxury {
+  background: oklch(100% 0 0) !important;
+  border: 1px solid oklch(85% 0.015 85) !important;
+  color: oklch(18% 0 0) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Figtree", sans-serif;
+}
+
+.input-luxury:focus {
+  border-color: oklch(62% 0.14 85 / 0.7) !important;
+  box-shadow: 0 0 0 2px oklch(62% 0.14 85 / 0.12) !important;
+  outline: none !important;
+}
+
+.input-luxury::placeholder {
+  color: oklch(65% 0 0) !important;
+}
+
+/* Stagger delay utilities */
+.delay-100 {
+  transition-delay: 0.1s;
+}
+.delay-200 {
+  transition-delay: 0.2s;
+}
+.delay-300 {
+  transition-delay: 0.3s;
+}
+.delay-400 {
+  transition-delay: 0.4s;
+}
+.delay-500 {
+  transition-delay: 0.5s;
+}
+.delay-600 {
+  transition-delay: 0.6s;
+}
